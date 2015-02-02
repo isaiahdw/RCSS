@@ -1,3 +1,6 @@
+'use strict';
+
+var registry = require('./registry');
 var sha1 = require('sha1');
 
 function hashStyle(styleObj) {
@@ -9,25 +12,19 @@ function generateValidCSSClassName(styleId) {
   return 'c' + styleId;
 }
 
-var global = Function("return this")();
-global.__RCSS_0_registry = global.__RCSS_0_registry || {};
-
 function registerClass(styleObj) {
   var styleId = generateValidCSSClassName(hashStyle(styleObj));
 
-  if (global.__RCSS_0_registry[styleId] == null) {
-    global.__RCSS_0_registry[styleId] = {
-      className: styleId,
-      style: styleObj
-    };
+  var style = {
+    className: styleId,
+    style: styleObj
+  };
+
+  if (registry.get(styleId) === undefined) {
+    registry.set(styleId, style);
   }
 
-  // Simple shallow clone
-  var styleObj = global.__RCSS_0_registry[styleId];
-  return {
-    className: styleObj.className,
-    style: styleObj.style
-  };
+  return style;
 }
 
 module.exports = registerClass;
