@@ -1,3 +1,5 @@
+'use strict';
+
 var isValidCSSProps = require('valid-css-props');
 
 function isValidProp(prop) {

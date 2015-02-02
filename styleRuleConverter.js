@@ -1,3 +1,5 @@
+'use strict';
+
 var escape = require('escape-html');
 var mediaQueryValidator = require('valid-media-queries');
 var styleRuleValidator = require('./styleRuleValidator');

@@ -1,3 +1,5 @@
+'use strict';
+
 var deepExtend = require('deep-extend');
 
 // currently `cascade` does a simple merge. In the future, we might have smarter
